@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>评分</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 485px;
+            margin: 20px auto;
+        }
+
+        #mark {
+            line-height: 1.5em;
+        }
+
+        #mark h1 {
+            height: 29px;
+            background: url(images/bg.jpg);
+            font-family: "黑体";
+            font-size: 12px;
+            color: #666;
+            line-height: 29px;
+            padding-left: 20px;
+            letter-spacing: 2px;
+            /* 字之间的距离 */
+        }
+
+        #pic {
+            margin: 10px 0px;
+        }
+
+        #txt {
+            width: 100%;
+            height: 170px;
+            margin: 0px auto;
+        }
+        #list{
+            margin: 0 auto;
+            width: 485px;
+        }
+        li{
+            width: 485px;
+        }
+        #head{
+            margin: 0 auto;
+            width: 1200px;
+        }
+        .check{
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            background-color: yellow;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 80px;
+            border-radius: 25%;
+            position: relative;
+            opacity: 0.8;
+        }
+        .small{
+            z-index: 2;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 30px;
+            width: 30px;
+            background-color: red;
+            display: inline-block;
+            border-radius: 50%;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <div class="check">
+            【差】
+            <div class="small">0</div>
+        </div>
+        <div class="check">
+            【一般】
+            <div class="small">0</div>
+        </div>
+        <div class="check">
+            【中等】
+            <div class="small">0</div>
+        </div>
+        <div class="check">
+            【还行】
+            <div class="small">0</div>
+        </div>
+        <div class="check">
+            【好】
+            <div class="small">0</div>
+        </div>
+    </div>
+    <div id="wrap">
+        <div id="mark">
+            <h1>宝贝与描述相符(打分匿名)</h1>
+            <div id="pic">
+                <img src="images/star0.png" title="1" name="0"/>
+                <img src="images/star0.png" title="2" name="1"/>
+                <img src="images/star0.png" title="3" name="2"/>
+                <img src="images/star0.png" title="4" name="3"/>
+                <img src="images/star0.png" title="5" name="4"/>
+                <br/>
+            </div>
+            <form>
+                <textarea cols="40" rows="8" value="" id='txt'></textarea>
+                <br/>
+            </form>
+            <button id="appendChild">评论</button>
+        </div>
+    </div>
+    <ul id="list"></ul>
+</body>
+<script>
+    var appendChild=document.getElementById('appendChild');
+    var insertBefore=document.getElementById("insertBefore");
+    var list=document.getElementById('list');
+	var pic=document.getElementById('pic');
+    var imgList=document.getElementsByTagName('img');
+    var txt=document.getElementById('txt');
+    var comments=["【差】","【一般】","【中等】","【还行】","【好】"];
+    var flag=true;
+    var small=document.getElementsByClassName("small");
+    for (var i = 0; i < imgList.length; i++) {
+    	imgList[i].onmouseover=function(){
+    		if(flag){
+    			var index=this.getAttribute("title");
+    			if(index>2){
+    				var imgSrc="images/star2.png";
+    			}
+    			else{
+    				var imgSrc="images/star1.png";
+    			}
+    			for (var j = 0; j <index; j++) {
+    				imgList[j].src=imgSrc;
+    			}
+    			txt.value=comments[index-1];
+    		}
+    		else{
+    			return;
+    		}
+    		
+    	}
+    	imgList[i].onmouseout=function(){
+    		if(flag){
+    			var index=this.getAttribute("title");
+    			for (var j = 0; j <index; j++) {
+    				imgList[j].src="images/star0.png";
+    			}
+    			txt.value="";
+    		}
+    		else{
+    			return;
+    		}
+    	}
+
+    	imgList[i].onclick=function(){
+    		flag=!flag;
+    	}
+
+    }
+    appendChild.onclick=function () {
+        var li=document.createElement("li");
+        var liCount=list.children.length+1;
+        var str=txt.value[1]+txt.value[2];
+        if(str=="差】"){
+            small[0].innerHTML=parseInt(small[0].innerHTML)+1;
+        }
+        if(str=="一般"){
+            small[1].innerHTML=parseInt(small[1].innerHTML)+1;
+        }
+        if(str=="中等"){
+            small[2].innerHTML=parseInt(small[2].innerHTML)+1;
+        }
+        if(str=="还行"){
+            small[3].innerHTML=parseInt(small[3].innerHTML)+1;
+        }
+        if(str=="好】"){
+            small[4].innerHTML=parseInt(small[4].innerHTML)+1;
+        }
+        li.innerHTML="评论"+liCount+txt.value;
+        list.appendChild(li);
+        txt.value="";
+        for (var j = 0; j <5; j++) {
+            imgList[j].src="images/star0.png";
+        }
+        flag=true;
+    }
+     
+</script>
+</html>
