@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>主页</title>
+	<link rel="stylesheet" href="makeupCss/index.css">
 	<style type="text/css">
 		*{
 			padding: 0;
@@ -11,22 +12,26 @@
 			list-style: none;
 		}
 		body{
-			background: url(images/hua.jpg) no-repeat 50% 50%; 
+			background-image: url("images/back.jpg");
 		}
 		#bigbox{
 			position: absolute;
-			top:50%;
-			width: 1200px;
-			margin: 0 auto;
+			top:500px;
+			width: 1150px;
+			margin: 20 auto;
 		}
-		.box{
+		.wai{
+			width: 1200px;
+			height: 400px;
+		}
+		.ibox{
 			width: 100px;
 			height: 100px;
 			display: inline-block;
 			background-color: red;
 			border-radius: 50%;
-			margin-left: 90px;
-			margin-right: 100px;
+			margin-left: 183px;
+			margin-top: 20px;
 		}
 		#a1{
 			background: url(images/mei.jpg) no-repeat 50% 50%;
@@ -39,15 +44,58 @@
 		}
 		#a4{
 			background: url(images/cloth.png) no-repeat 50% 50%;
+			margin-right: 0;
+		}
+		#title{
+			width: 1200px;
+			height: 40px;
+			margin: 0 auto;
+		}
+		#title li{
+			width: 280px;
+			height: 40px;
+			display: inline-block;
+			background-color:pink;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 70%;
+			opacity: 0.5;
 		}
 	</style>
 </head>
 <body>
+	<div class="box" id="box">
+		<div class="slider" id="slider">
+			<div class="slide"><img src="images/wai4.png" class="wai"></div>
+			<div class="slide"><img src="images/wai.png" class="wai"></div>
+			<div class="slide"><img src="images/wai1.jpg" class="wai"></div>
+			<div class="slide"><img src="images/wai2.jpg" class="wai"></div>
+			<div class="slide"><img src="images/wai3.jpg" class="wai"></div>
+			<div class="slide"><img src="images/wai4.png" class="wai"></div>
+			<div class="slide"><img src="images/wai.png" class="wai"></div>
+		</div>
+		<span id="left"><</span>
+		<span id="right">></span>
+		<ul class="nav" id="nav">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<ul id="title">
+		<li>美妆</li>
+		<li>箱包</li>
+		<li>首饰</li>
+		<li>服装</li>	
+	</ul>
 	<div id="bigbox">
-		<a class="box" id="a1" href="makeup.html"></a>
-		<a class="box" id="a2" href="bag.html"></a>
-		<a class="box" id="a3" href="jewelry.html"></a>
-		<a class="box" id="a4" href="cloth.html"></a>
+		<a class="ibox" id="a1" href="makeup.html"></a>
+		<a class="ibox" id="a2" href="bag.html"></a>
+		<a class="ibox" id="a3" href="jewelry.html"></a>
+		<a class="ibox" id="a4" href="cloth.html"></a>
 	</div>
 </body>
+<script type="text/javascript" src="animate.js"></script>
 </html>
